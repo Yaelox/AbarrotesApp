@@ -1,0 +1,7 @@
+{
+  "name": "AbarrotesApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
