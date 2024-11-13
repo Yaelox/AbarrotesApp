@@ -25,7 +25,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AngularFireAuthModule, // Para autenticación
     AngularFirestoreModule, 
     FormsModule,// Para Firestore
-    HttpClientModule, ServiceWorkerModule.register('ngsw-worker.js', {
+   ServiceWorkerModule.register('ngsw-worker.js', {
   enabled: !isDevMode(),
   // Register the ServiceWorker as soon as the application is stable
   // or after 30 seconds (whichever comes first).

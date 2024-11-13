@@ -3,9 +3,9 @@
   "short_name": "app",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
-  "display": "App para gestionar inventario",
+  "display": "standalone",
   "scope": "./",
-  "start_url": "./",
+  "start_url": "./index.html",
   "icons": [
     {
       "src": "icons/icon-72x72.png",
