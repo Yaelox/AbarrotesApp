@@ -1,0 +1,58 @@
+.register-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: linear-gradient(135deg, #e8f0fe, #f1f3f5);
+}
+
+.register-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.register-card h2 {
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #3f51b5; /* Color de título */
+}
+
+.register-card p {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+ion-button.register-button {
+  background-color: #3f51b5; /* Color del botón */
+  color: white;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+ion-button.register-button:hover {
+  background-color: #303f9f; /* Color al pasar el mouse */
+  transform: scale(1.05); /* Efecto de crecimiento al pasar el mouse */
+}
+
+.footer-text {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #888;
+}
+
+.footer-text a {
+  color: #3f51b5; /* Color del enlace */
+  text-decoration: underline;
+  font-weight: bold;
+}

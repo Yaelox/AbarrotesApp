@@ -1,0 +1,12 @@
+<ion-list>
+  <ion-item *ngFor="let pokemon of pokemons">
+    <ion-thumbnail slot="start">
+      <img [src]="pokemon.image" alt="{{ pokemon.name }}">
+    </ion-thumbnail>
+    <ion-label>
+      <h2>{{ pokemon.name | titlecase }}</h2>
+      <p>Tipo: {{ pokemon.types.join(', ') | titlecase }}</p>
+    </ion-label>
+    <ion-toggle slot="end" [(ngModel)]="pokemon.isFavorite" (ionChange)="toggleFavorite(pokemon)"></ion-toggle>
+  </ion-item>
+</ion-list>
