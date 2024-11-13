@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -23,8 +23,8 @@ import { environment } from '../environments/environment';
     AngularFirestoreModule,
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-      registrationStrategy: 'registerWhenStable:30000'
+      enabled: !isDevMode(), // Desactiva el service worker en modo desarrollo
+      registrationStrategy: 'registerWhenStable:30000', // Registra el worker cuando la app esté estable o después de 30s
     })
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
