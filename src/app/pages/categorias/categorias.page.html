@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Gestión de Categorías</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Formulario para agregar nueva categoría -->
+  <ion-item>
+    <ion-label position="floating">Nombre de la Categoría</ion-label>
+    <ion-input [(ngModel)]="newCategoriaNombre" placeholder="Nombre de la categoría"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Descripción</ion-label>
+    <ion-input [(ngModel)]="newCategoriaDescripcion" placeholder="Descripción de la categoría"></ion-input>
+  </ion-item>
+  <ion-button expand="full" (click)="addCategoria()">Agregar Categoría</ion-button>
+
+  <!-- Lista de categorías -->
+  <ion-list>
+    <ion-item *ngFor="let categoria of categorias">
+      <ion-label>
+        <h2>{{ categoria.nombre }}</h2>
+        <p>{{ categoria.descripcion }}</p>
+      </ion-label>
+      <ion-button fill="clear" color="danger" (click)="deleteCategoria(categoria.id)">Eliminar</ion-button>
+      <ion-button fill="clear" color="primary" (click)="editCategoria(categoria.id)">Editar</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

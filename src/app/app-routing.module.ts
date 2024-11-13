@@ -30,6 +30,18 @@ const routes: Routes = [
   {
     path: 'agregar',
     loadChildren: () => import('./pages/agregar/agregar.module').then( m => m.AgregarPageModule)
+  },
+  {
+    path: 'categorias',
+    loadChildren: () => import('./pages/categorias/categorias.module').then( m => m.CategoriasPageModule)
+  },
+  {
+    path: 'proveedores',
+    loadChildren: () => import('./pages/proveedores/proveedores.module').then( m => m.ProveedoresPageModule)
+  },
+  {
+    path: 'edit-categoria',
+    loadChildren: () => import('./pages/edit-categoria/edit-categoria.module').then( m => m.EditCategoriaPageModule)
   }
   ];
 

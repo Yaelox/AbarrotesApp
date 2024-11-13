@@ -1,58 +1,98 @@
+/* Fondo con azul claro */
 .register-content {
+  background-color: #a2c8ff; /* Azul claro */
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 100%;
-  background: linear-gradient(135deg, #e8f0fe, #f1f3f5);
+  align-items: center;
+  height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  padding: 0;
 }
 
 .register-card {
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  width: 90%;
   max-width: 400px;
+  width: 100%;
+  background: #f9f9f9; /* Color de fondo claro para la tarjeta */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+  border-radius: 15px;
+  padding: 20px;
   text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  }
+  border: 1px solid #e1e1e1; /* Borde suave para la tarjeta */
 }
 
-.register-card h2 {
+/* Estilo del título de registro */
+h2 {
+  font-size: 1.8em;
+  color: #333;
   margin-bottom: 10px;
-  font-weight: bold;
-  color: #3f51b5; /* Color de título */
 }
 
-.register-card p {
+p {
+  font-size: 1em;
+  color: #777;
   margin-bottom: 20px;
+}
+
+form {
+  width: 100%;
+}
+
+/* Estilo para los campos de entrada */
+ion-item {
+  --border-color: #ccc;
+  --highlight-color-focused: #ff5e62;
+  margin-top: 15px;
+}
+
+ion-label {
+  font-size: 1em;
+  color: #333;
+}
+
+ion-input {
+  font-size: 1em;
+  padding: 10px;
+}
+
+/* Estilo del botón de registro */
+.register-button {
+  --background: linear-gradient(45deg, #ff9966, #ff5e62);
+  color: #fff;
+  font-weight: bold;
+  margin-top: 20px;
+  transition: background 0.3s ease-in-out;
+}
+
+.register-button:hover {
+  --background: linear-gradient(45deg, #ff5e62, #ff9966);
+}
+
+/* Estilo del texto al pie */
+.footer-text {
+  font-size: 0.9em;
+  margin-top: 20px;
   color: #555;
 }
 
-ion-button.register-button {
-  background-color: #3f51b5; /* Color del botón */
-  color: white;
-  margin-top: 20px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-ion-button.register-button:hover {
-  background-color: #303f9f; /* Color al pasar el mouse */
-  transform: scale(1.05); /* Efecto de crecimiento al pasar el mouse */
-}
-
-.footer-text {
-  margin-top: 15px;
-  font-size: 14px;
-  color: #888;
-}
-
 .footer-text a {
-  color: #3f51b5; /* Color del enlace */
+  color: #ff5e62;
+  text-decoration: none;
+}
+
+.footer-text a:hover {
   text-decoration: underline;
+}
+
+ion-header {
+  --background: #a2c8ff; /* Fondo azul claro para el encabezado */
+}
+
+ion-toolbar {
+  --background: #a2c8ff;
+}
+
+ion-title {
+  color: white;
+  font-size: 1.5em;
   font-weight: bold;
 }
