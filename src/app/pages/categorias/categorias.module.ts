@@ -1,20 +1,15 @@
 import { NgModule } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-import { IonicModule } from '@ionic/angular';
-
-import { CategoriasPageRoutingModule } from './categorias-routing.module';
-
-import { CategoriasPage } from './categorias.page';
+import { CategoriaPage } from './categorias.page';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
     IonicModule,
-    CategoriasPageRoutingModule
+    CommonModule,
+    FormsModule
   ],
-  declarations: [CategoriasPage]
+  declarations: [CategoriaPage]
 })
 export class CategoriasPageModule {}

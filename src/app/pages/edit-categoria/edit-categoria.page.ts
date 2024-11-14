@@ -20,23 +20,31 @@ export class EditCategoriaPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Obtener el id de la categoría desde la URL
     this.categoriaId = this.activatedRoute.snapshot.paramMap.get('id')!;
     this.loadCategoria();
   }
 
-  // Cargar la categoría desde Firebase
   loadCategoria() {
+    console.log("ID de categoría:", this.categoriaId);
+  
+    if (!this.categoriaId) {
+      console.error("El ID de la categoría es inválido o no está definido.");
+      return;
+    }
+  
     this.categoriaService.getCategoria(this.categoriaId).then(snapshot => {
       if (snapshot.exists()) {
         const categoria = snapshot.val();
         this.categoriaNombre = categoria.nombre;
         this.categoriaDescripcion = categoria.descripcion;
+      } else {
+        console.log("No existe la categoría");
       }
+    }).catch(error => {
+      console.error("Error al obtener la categoría:", error);
     });
   }
 
-  // Actualizar la categoría
   updateCategoria() {
     if (this.categoriaNombre.trim() && this.categoriaDescripcion.trim()) {
       const updatedCategoria = {
@@ -44,7 +52,7 @@ export class EditCategoriaPage implements OnInit {
         descripcion: this.categoriaDescripcion
       };
       this.categoriaService.updateCategoria(this.categoriaId, updatedCategoria).then(() => {
-        this.router.navigate(['/categorias']); // Redirigir a la página de categorías
+        this.router.navigate(['/categorias']);
       });
     }
   }

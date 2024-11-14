@@ -1,40 +1,47 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database'; // Correcta importación
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class CategoriaService {
-  private basePath = '/categorias';
+  private basePath: string = '/categorias';
 
-  constructor(private db: AngularFireDatabase) {} // Usamos AngularFireDatabase aquí
+  constructor(private db: AngularFireDatabase) {}
 
-  // Obtener todas las categorías
   getCategorias(): Observable<any[]> {
     return this.db.list(this.basePath).valueChanges();
   }
 
-  // Eliminar una categoría
-  deleteCategoria(id: string): Promise<void> {
-    return this.db.object(`${this.basePath}/${id}`).remove();
+  getCategoria(id: string): Promise<any> {
+    return this.db.object(`${this.basePath}/${id}`).query.get();
   }
 
-// Crear una nueva categoría con manejo de errores
-createCategoria(categoria: any): Promise<any> {
-  return this.db.list(this.basePath).push(categoria)
-    .catch((error) => {
-      console.error('Error al crear la categoría: ', error);
-      throw error; // Lanza el error para que lo maneje el componente o la llamada
-    });
-}
+  deleteCategoria(id: string): Promise<void> {
+    return this.db.object(`${this.basePath}/${id}`).remove()
+      .then(() => console.log(`Categoría con ID ${id} eliminada`))
+      .catch(error => {
+        console.error('Error al eliminar la categoría:', error);
+        throw error;
+      });
+  }
 
-// Actualizar una categoría con manejo de errores
-updateCategoria(id: string, categoria: any): Promise<void> {
-  return this.db.object(`${this.basePath}/${id}`).update(categoria)
-    .catch((error) => {
-      console.error('Error al actualizar la categoría: ', error);
-      throw error;
-    });
-}
+  createCategoria(categoria: any): Promise<void> {
+    return this.db.list(this.basePath).push(categoria)
+      .then(() => console.log('Categoría creada exitosamente'))
+      .catch(error => {
+        console.error('Error al crear la categoría:', error);
+        throw error;
+      });
+  }
+
+  updateCategoria(id: string, categoria: any): Promise<void> {
+    return this.db.object(`${this.basePath}/${id}`).update(categoria)
+      .then(() => console.log(`Categoría con ID ${id} actualizada`))
+      .catch(error => {
+        console.error('Error al actualizar la categoría:', error);
+        throw error;
+      });
+  }
 }
