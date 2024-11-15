@@ -12,6 +12,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
+import { initializeApp } from 'firebase/app';
+initializeApp(environment.firebaseConfig);
 
 @NgModule({
   declarations: [AppComponent],

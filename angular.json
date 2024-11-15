@@ -22,8 +22,23 @@
             "assets": [
               {
                 "glob": "**/*",
+                "input": "src/manifest.json"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/firebase-messaging-sw.js"
+              },{
+
+                "glob": "**/*",
                 "input": "src/assets",
                 "output": "assets"
+                
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
+                
               },
               {
                 "glob": "**/*.svg",
