@@ -21,24 +21,19 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               {
-                "glob": "**/*",
-                "input": "src/manifest.json"
+                "glob": "manifest.json",
+                "input": "src",
+                "output": "/"
               },
               {
-                "glob": "**/*",
-                "input": "src/firebase-messaging-sw.js"
-              },{
-
-                "glob": "**/*",
-                "input": "src/assets",
-                "output": "assets"
-                
+                "glob": "firebase-messaging-sw.js",
+                "input": "src",
+                "output": "/"
               },
               {
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "assets"
-                
               },
               {
                 "glob": "**/*.svg",
