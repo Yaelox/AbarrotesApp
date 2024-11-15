@@ -11,7 +11,7 @@ export class CategoriaService {
   constructor(private firestore: AngularFirestore) { }
 
    // Método para obtener los productos
-   getProducts(): Observable<any[]> {
+   getCategorias(): Observable<any[]> {
     return this.firestore.collection('Categorias').valueChanges();
   }
 }

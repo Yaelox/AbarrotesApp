@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ProveedoresPageRoutingModule } from './proveedores-routing.module';
 
-import { ProveedoresPage } from './proveedores.page';
+import { AgregarProveedorPage } from './proveedores.page';
 
 @NgModule({
   imports: [
@@ -15,6 +15,6 @@ import { ProveedoresPage } from './proveedores.page';
     IonicModule,
     ProveedoresPageRoutingModule
   ],
-  declarations: [ProveedoresPage]
+  declarations: [AgregarProveedorPage]
 })
 export class ProveedoresPageModule {}
