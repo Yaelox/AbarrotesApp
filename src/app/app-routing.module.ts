@@ -38,10 +38,6 @@ const routes: Routes = [
   {
     path: 'proveedores',
     loadChildren: () => import('./pages/proveedores/proveedores.module').then( m => m.ProveedoresPageModule)
-  },
-  {
-    path: 'edit-categoria',
-    loadChildren: () => import('./pages/edit-categoria/edit-categoria.module').then( m => m.EditCategoriaPageModule)
   }
   ];
 

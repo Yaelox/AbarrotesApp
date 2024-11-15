@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CategoriasPage } from './categorias.page';
+import { AgregarCategoriaPage } from './categorias.page';  // Adjust to match the class name
+
 
 const routes: Routes = [
   {
     path: '',
-    component: CategoriasPage
+    component: AgregarCategoriaPage
   }
 ];
 

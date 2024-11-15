@@ -1,37 +1,54 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Gestión de Categorías</ion-title>
+    <ion-title>Gestionar Categorías</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <!-- Formulario para agregar nueva categoría -->
+<ion-content>
+  <ion-button expand="block" color="primary" (click)="goToHome()" class="btn-home">
+    <ion-icon name="home-outline" slot="start"></ion-icon>
+    Ir a Inicio
+  </ion-button>
+
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Agregar Nueva Categoría</ion-card-title>
+      <ion-card-title>{{ editing ? 'Editar Categoría' : 'Agregar Nueva Categoría' }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-item>
-        <ion-label position="floating">Nombre de la Categoría</ion-label>
-        <ion-input [(ngModel)]="newCategoriaNombre" placeholder="Nombre de la categoría"></ion-input>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="newCategoria.Nombre"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Descripción</ion-label>
-        <ion-input [(ngModel)]="newCategoriaDescripcion" placeholder="Descripción de la categoría"></ion-input>
+        <ion-textarea [(ngModel)]="newCategoria.Descripcion"></ion-textarea>
       </ion-item>
-      <ion-button expand="full" (click)="addCategoria()">Agregar Categoría</ion-button>
+      <ion-button expand="full" color="primary" (click)="editing ? updateCategoria() : addCategoria()">
+        {{ editing ? 'Actualizar Categoría' : 'Agregar Categoría' }}
+      </ion-button>
+      <ion-button expand="full" color="medium" (click)="clearForm()" *ngIf="editing">
+        Cancelar
+      </ion-button>
     </ion-card-content>
   </ion-card>
 
-  <!-- Lista de categorías -->
   <ion-list>
-    <ion-item *ngFor="let categoria of categorias">
+    <ion-list-header>
+      <ion-label>Lista de Categorías</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let categoria of categorias | async">
       <ion-label>
-        <h2>{{ categoria.nombre }}</h2>
-        <p>{{ categoria.descripcion }}</p>
+        <h2>{{ categoria.Nombre }}</h2>
+        <p>{{ categoria.Descripcion }}</p>
       </ion-label>
-      <ion-button fill="clear" color="danger" (click)="eliminarCategoria(categoria.id)">Eliminar</ion-button>
-      <ion-button fill="clear" color="primary" (click)="editarCategoria(categoria.id)">Editar</ion-button>
+      <ion-buttons slot="end">
+        <ion-button color="warning" (click)="editCategoria(categoria)">
+          Editar
+        </ion-button>
+        <ion-button color="danger" (click)="deleteCategoria(categoria.id)">
+          Eliminar
+        </ion-button>
+      </ion-buttons>
     </ion-item>
   </ion-list>
 </ion-content>

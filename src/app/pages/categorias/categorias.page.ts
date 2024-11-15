@@ -1,68 +1,99 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriaService } from '../../services/categoria.service';
-import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { NavController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-categoria',
+  selector: 'app-agregar-categoria',
   templateUrl: './categorias.page.html',
   styleUrls: ['./categorias.page.scss'],
 })
-export class CategoriaPage implements OnInit {
-  categorias: any[] = []; // Almacena las categorías
-  newCategoriaNombre: string = ''; // Nombre de la nueva categoría
-  newCategoriaDescripcion: string = ''; // Descripción de la nueva categoría
+export class AgregarCategoriaPage implements OnInit {
+  categorias: Observable<any[]> | undefined;
+  newCategoria: any = {
+    Nombre: '',
+    Descripcion: '',
+  };
+  editing: boolean = false;
+  editingId: string | null = null;
 
-  constructor(private categoriaService: CategoriaService, private router: Router) {}
+  constructor(
+    private firestore: AngularFirestore,
+    private navCtrl: NavController
+  ) {}
 
   ngOnInit() {
-    this.loadCategorias(); // Cargar las categorías al iniciar la página
+    // Load categories from Firestore
+    this.categorias = this.firestore.collection('Categorias').valueChanges({ idField: 'id' });
   }
 
-  // Método para cargar las categorías
-  loadCategorias() {
-    this.categoriaService.getCategorias().subscribe(
-      (data) => {
-        // Verifica que las categorías tienen un 'id' para cada una
-        this.categorias = data.map(categoria => ({
-          ...categoria, 
-          id: categoria.key // Si estás usando Firebase, la 'key' es el identificador único
-        }));
-      },
-      (error) => {
-        console.error('Error al cargar las categorías', error);
-      }
-    );
-  }
-
-  // Método para agregar una categoría
+  // Method to add a new category
   addCategoria() {
-    const nuevaCategoria = {
-      nombre: this.newCategoriaNombre,
-      descripcion: this.newCategoriaDescripcion,
-    };
+    if (this.newCategoria.Nombre && this.newCategoria.Descripcion) {
+      const id = this.firestore.createId();
+      this.firestore.collection('Categorias').doc(id).set({
+        Nombre: this.newCategoria.Nombre,
+        Descripcion: this.newCategoria.Descripcion,
+        Fechadeagregado: new Date()
+      }).then(() => {
+        alert('Categoría agregada exitosamente');
+        this.clearForm();
+      }).catch(error => {
+        console.error('Error al agregar categoría:', error);
+        alert('Hubo un error al agregar la categoría. Intenta de nuevo.');
+      });
+    } else {
+      alert('Por favor, complete todos los campos');
+    }
+  }
 
-    this.categoriaService.createCategoria(nuevaCategoria)
+  // Method to update an existing category
+  updateCategoria() {
+    if (this.editingId && this.newCategoria.Nombre && this.newCategoria.Descripcion) {
+      this.firestore.collection('Categorias').doc(this.editingId).update({
+        Nombre: this.newCategoria.Nombre,
+        Descripcion: this.newCategoria.Descripcion,
+        Fechadeactualizacion: new Date()
+      }).then(() => {
+        alert('Categoría actualizada exitosamente');
+        this.clearForm();
+      }).catch(error => {
+        console.error('Error al actualizar categoría:', error);
+        alert('Hubo un error al actualizar la categoría. Intenta de nuevo.');
+      });
+    } else {
+      alert('Por favor, complete todos los campos');
+    }
+  }
+
+  // Method to load data into the form for editing
+  editCategoria(categoria: any) {
+    this.editing = true;
+    this.editingId = categoria.id;
+    this.newCategoria = { ...categoria };
+  }
+
+  // Method to delete a category
+  deleteCategoria(id: string) {
+    this.firestore.collection('Categorias').doc(id).delete()
       .then(() => {
-        this.loadCategorias(); // Recargar la lista después de agregar
-        this.newCategoriaNombre = ''; // Limpiar el campo de nombre
-        this.newCategoriaDescripcion = ''; // Limpiar el campo de descripción
+        alert('Categoría eliminada exitosamente');
       })
-      .catch((error) => {
-        console.error('Error al agregar la categoría', error);
+      .catch(error => {
+        console.error('Error al eliminar categoría:', error);
+        alert('Hubo un error al eliminar la categoría. Intenta de nuevo.');
       });
   }
 
-  // Método para eliminar una categoría
-  eliminarCategoria(categoriaId: string) {
-    this.categoriaService.deleteCategoria(categoriaId).then(() => {
-      this.loadCategorias(); // Recargar la lista después de eliminar
-    }).catch((error) => {
-      console.error('Error al eliminar la categoría', error);
-    });
+  // Method to clear the form and reset editing mode
+  clearForm() {
+    this.newCategoria = { Nombre: '', Descripcion: '' };
+    this.editing = false;
+    this.editingId = null;
   }
 
-  // Método para editar una categoría
-  editarCategoria(categoriaId: string) {
-    this.router.navigate(['/edit-categoria', categoriaId]); // Navegar a la página de edición
+  // Method to navigate back to the home page
+  goToHome() {
+    this.navCtrl.navigateRoot('/home');
   }
 }
