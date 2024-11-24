@@ -10,15 +10,20 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database'; // As
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 import { initializeApp } from 'firebase/app';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
+import { CategoriaService } from './services/categoria.service';
+import { ProveedoresService } from './services/proveedores.service';
 initializeApp(environment.firebaseConfig);
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -31,7 +36,7 @@ initializeApp(environment.firebaseConfig);
       registrationStrategy: 'registerWhenStable:30000', // Registra el worker cuando la app esté estable o después de 30s
     })
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,27 +1,99 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+/* Estilos globales para la página Home */
+ion-header {
+  background-color: #3b3b3b;  /* Fondo oscuro */
+  color: white;  /* Texto blanco */
+  padding-bottom: 1rem;  /* Espaciado inferior */
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+ion-toolbar {
+  --background: #3b3b3b;  /* Asegurando que el toolbar tenga el mismo fondo */
 }
 
-#container p {
+ion-title {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+ion-button {
+  font-family: 'Helvetica Neue', sans-serif;
   font-size: 16px;
-  line-height: 22px;
+  font-weight: normal;
+  background-color: #007bff;  /* Botón azul */
+  color: white;
 
-  color: #8c8c8c;
-
-  margin: 0;
+  &:hover {
+    background-color: #0056b3;  /* Botón más oscuro al pasar el ratón */
+  }
 }
 
-#container a {
-  text-decoration: none;
+ion-content {
+  background-color: #f4f4f4;  /* Fondo gris claro */
+  padding: 2rem;  /* Espaciado interno */
+}
+
+ion-grid {
+  padding-top: 2rem;  /* Espaciado superior */
+}
+
+ion-item {
+  background-color: white;  /* Fondo blanco para los elementos */
+  border-radius: 8px;
+  margin-bottom: 1rem;  /* Espaciado inferior */
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Sombra sutil */
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  /* Efecto hover con sombra */
+  }
+}
+
+ion-label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: #333;  /* Texto oscuro */
+}
+
+p {
+  font-size: 14px;
+  color: #666;  /* Texto gris claro */
+}
+
+ion-icon {
+  font-size: 24px;  /* Tamaño del ícono */
+  color: #007bff;  /* Color azul para los íconos */
+}
+
+ion-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+ion-button[color='primary'] {
+  background-color: #007bff;  /* Botón primario azul */
+}
+
+ion-button[color='danger'] {
+  background-color: #dc3545;  /* Botón rojo de eliminar */
+}
+
+ion-button[color='warning'] {
+  background-color: #ffc107;  /* Botón amarillo de editar */
 }

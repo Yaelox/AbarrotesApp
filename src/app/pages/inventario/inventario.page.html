@@ -1,30 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Inventario</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToHome()">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-  <app-header [title]="'Inventario'"></app-header>
-
-  <!-- Tarjetas de productos con imágenes -->
   <ion-grid>
+    <!-- Botón para regresar al inicio -->
     <ion-row>
-      <ion-col size="10" size-md="8" size-lg="4" *ngFor="let producto of productos">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>{{ producto.Nombre }}</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p><strong>Precio:</strong> {{ producto.Precio | currency }}</p>
-            <p><strong>Stock:</strong> {{ producto.Stock }}</p>
-            <p><strong>Categoría:</strong> {{ producto.Categoria }}</p>
+      <ion-col size="12" class="ion-text-center">
+        <ion-button expand="full" color="primary" (click)="goToHome()">Ir al inicio</ion-button>
+      </ion-col>
+    </ion-row>
 
-            <!-- Botones de acción (editar y eliminar) -->
-        
-          </ion-card-content>
-        </ion-card>
+    <!-- Lista de productos -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-item *ngFor="let producto of productos">
+            <ion-label>
+              <h2>{{ producto.Nombre }}</h2>
+              <p>Precio: ${{ producto.Precio }}</p>
+              <p>Stock: {{ producto.Stock }}</p>
+              <p>Categoría: {{ producto.Categoria }}</p>
+              <p>Proveedor: {{ producto.proveedor }}</p>
+            </ion-label>
+
+            <!-- Mostrar los botones de editar y eliminar solo si el id está presente -->
+            <ion-buttons slot="end" *ngIf="producto.id">
+              <ion-button color="warning" (click)="editProducto(producto)">
+                <ion-icon name="create"></ion-icon>
+              </ion-button>
+              <ion-button color="danger" (click)="deleteProducto(producto.id)">
+                <ion-icon name="trash"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-item>          
+        </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <!-- Botón para regresar a la página principal -->
-  <ion-button expand="full" (click)="goToHome()" color="primary" style="margin-top: 20px;">
-    <ion-icon name="home" slot="start"></ion-icon>
-    Regresar a Home
-  </ion-button>
 </ion-content>
