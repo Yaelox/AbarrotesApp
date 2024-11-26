@@ -39,8 +39,10 @@
     </ion-item>
 
     <ion-item lines="full">
-      <ion-label position="stacked">Proveedor</ion-label>
-      <ion-input [(ngModel)]="newProduct.proveedor" required placeholder="Introduce el nombre del proveedor"></ion-input>
+      <ion-label position="stacked">Proveedores</ion-label>
+      <ion-select [(ngModel)]="newProduct.Proveedores" interface="popover" placeholder="Selecciona una Proveedores" required>
+        <ion-select-option *ngFor="let proveedores of proveedores | async" [value]="proveedores.Nombre">{{ proveedores.Nombre }}</ion-select-option>
+      </ion-select>
     </ion-item>
 
     <!-- Botones -->

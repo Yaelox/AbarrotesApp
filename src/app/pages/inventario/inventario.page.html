@@ -61,12 +61,20 @@
               <ion-input type="number" formControlName="Stock"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label position="floating">Categoría</ion-label>
-              <ion-input formControlName="Categoria"></ion-input>
+              <ion-label>Categoría</ion-label>
+              <ion-select formControlName="Categoria">
+                <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.id">
+                  {{ categoria.Nombre }}
+                </ion-select-option>
+              </ion-select>
             </ion-item>
             <ion-item>
-              <ion-label position="floating">Proveedor</ion-label>
-              <ion-input formControlName="proveedor"></ion-input>
+              <ion-label>Proveedor</ion-label>
+              <ion-select formControlName="proveedor">
+                <ion-select-option *ngFor="let proveedor of proveedores" [value]="proveedor.id">
+                  {{ proveedor.Nombre }}
+                </ion-select-option>
+              </ion-select>
             </ion-item>
             <ion-footer>
               <ion-toolbar>

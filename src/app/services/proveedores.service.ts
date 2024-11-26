@@ -12,6 +12,6 @@ export class ProveedoresService {
 
    // Método para obtener los productos
    getProveedores(): Observable<any[]> {
-    return this.firestore.collection('Proovedores').valueChanges();
+    return this.firestore.collection('Proveedores').valueChanges();
   }
 }

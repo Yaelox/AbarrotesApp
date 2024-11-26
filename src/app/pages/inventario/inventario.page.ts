@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService, Producto } from '../../services/product.service';
+import { CategoriaService } from '../../services/categoria.service'; // Servicio para categorías
+import { ProveedoresService } from '../../services/proveedores.service'; // Servicio para proveedores
 import { ToastController, AlertController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 
@@ -11,12 +13,16 @@ import { NavController } from '@ionic/angular';
 })
 export class InventarioPage implements OnInit {
   productos: Producto[] = [];
+  categorias: any[] = []; // Almacenará las categorías disponibles
+  proveedores: any[] = []; // Almacenará los proveedores disponibles
   isEditModalOpen = false; // Controla la visibilidad del modal
   editForm: FormGroup; // Formulario para editar
   selectedProductId: string | null = null; // ID del producto seleccionado
 
   constructor(
     private productService: ProductService,
+    private categoryService: CategoriaService, // Inyectar el servicio de categorías
+    private providerService: ProveedoresService, // Inyectar el servicio de proveedores
     private fb: FormBuilder,
     private toastController: ToastController,
     private alertController: AlertController,
@@ -27,18 +33,21 @@ export class InventarioPage implements OnInit {
       Nombre: ['', Validators.required],
       Precio: [0, [Validators.required, Validators.min(0)]],
       Stock: [0, [Validators.required, Validators.min(0)]],
-      Categoria: ['', Validators.required],
-      proveedor: ['', Validators.required],
+      Categoria: ['', Validators.required], // Campo de selección para categorías
+      proveedor: ['', Validators.required], // Campo de selección para proveedores
     });
   }
 
   ngOnInit() {
     this.loadProductos();
+    this.loadCategorias();
+    this.loadProveedores();
   }
 
   goToHome() {
     this.navCtrl.navigateRoot('/home');
   }
+
   // Cargar productos desde Firebase
   loadProductos() {
     this.productService.getProducts().subscribe((data) => {
@@ -46,6 +55,19 @@ export class InventarioPage implements OnInit {
     });
   }
 
+  loadCategorias() {
+    this.categoryService.getCategorias().subscribe((data) => {
+      console.log('Categorías:', data); // Verifica si llegan las categorías
+      this.categorias = data;
+    });
+  }
+  
+  loadProveedores() {
+    this.providerService.getProveedores().subscribe((data) => {
+      console.log('Proveedores:', data); // Verifica si llegan los proveedores
+      this.proveedores = data;
+    });
+  }
   // Abrir modal de edición
   openEditModal(producto: Producto) {
     this.isEditModalOpen = true;

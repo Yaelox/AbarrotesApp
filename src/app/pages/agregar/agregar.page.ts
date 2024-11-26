@@ -10,7 +10,8 @@ import { NavController } from '@ionic/angular'; // Importar NavController
 })
 export class AgregarPage implements OnInit {
   productos: Observable<any[]> | undefined;
-  categorias: Observable<any[]> | undefined; // Variable para almacenar categorías
+  categorias: Observable<any[]> | undefined; 
+  proveedores: Observable<any[]> | undefined;// Variable para almacenar categorías
   newProduct: any = {
     Nombre: '',
     Descripcion: '',
@@ -31,6 +32,8 @@ export class AgregarPage implements OnInit {
 
     // Obtener las categorías desde Firestore
     this.categorias = this.getCategories();
+
+    this.proveedores = this.getProveedores();
   }
   
   goToHome() {
@@ -39,6 +42,10 @@ export class AgregarPage implements OnInit {
   
   getCategories(): Observable<any[]> {
     return this.firestore.collection('Categorias').valueChanges(); // Cambia 'Categorías' por el nombre de tu colección de categorías
+  }
+
+  getProveedores(): Observable<any[]>{
+    return this.firestore.collection('Proveedores').valueChanges();
   }
 
   // Método para agregar un producto
