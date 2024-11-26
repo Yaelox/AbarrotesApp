@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService, Producto } from '../../services/product.service';
 import { CategoriaService } from '../../services/categoria.service'; // Servicio para categorías
 import { ProveedoresService } from '../../services/proveedores.service'; // Servicio para proveedores
 import { ToastController, AlertController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
-=======
 import { ProductService } from '../../services/product.service';
 import { NavController, ModalController, AlertController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -25,8 +23,6 @@ export interface Producto {
   Fechadeagregado: any;
   proveedor: string;
 }
->>>>>>> parent of ad224c2 (Mejora de page inventario)
-
 @Component({
   selector: 'app-inventario',
   templateUrl: './inventario.page.html',
@@ -34,7 +30,6 @@ export interface Producto {
 })
 export class InventarioPage implements OnInit {
   productos: Producto[] = [];
-<<<<<<< HEAD
   categorias: any[] = []; // Almacenará las categorías disponibles
   proveedores: any[] = []; // Almacenará los proveedores disponibles
   isEditModalOpen = false; // Controla la visibilidad del modal
@@ -64,48 +59,16 @@ export class InventarioPage implements OnInit {
     this.loadProductos();
     this.loadCategorias();
     this.loadProveedores();
-=======
-  categorias: string[] = [];
-  proveedores: string[] = [];
-
-  constructor(
-    private productService: ProductService,
-    private navCtrl: NavController,
-    private router: Router,
-    private firestore: AngularFirestore,
-    private alertController: AlertController,
-    private toastController: ToastController,
-    private categoriaService: CategoriaService,  // Instanciamos el servicio de categorías
-    private proveedoresService: ProveedoresService   // Instanciamos el servicio de proveedores
-  ) {}
-
-  ngOnInit() {
-    // Obtener productos
-    this.productService.getProducts().subscribe((data) => {
-      this.productos = data;
-    });
-
-    // Obtener categorías y proveedores
-    this.categoriaService.getCategorias().subscribe((data) => {
-      this.categorias = data;
-    });
-
-    this.proveedoresService.getProveedores().subscribe((data) => {
-      this.proveedores = data;
-    });
-  }
-
   loadProductos() {
     this.productService.getProducts().subscribe((data) => {
       this.productos = data; // Recarga los productos en la lista
     });
->>>>>>> parent of ad224c2 (Mejora de page inventario)
   }
 
   goToHome() {
     this.navCtrl.navigateRoot('/home');
   }
-<<<<<<< HEAD
+
 
   // Cargar productos desde Firebase
   loadProductos() {
@@ -169,12 +132,6 @@ export class InventarioPage implements OnInit {
       });
   }
 
-  // Eliminar producto
-  async deleteProducto(id: string) {
-=======
-
-  async editProducto(producto: Producto) {
->>>>>>> parent of ad224c2 (Mejora de page inventario)
     const alert = await this.alertController.create({
       header: 'Editar Producto',
       inputs: [

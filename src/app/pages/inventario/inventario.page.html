@@ -31,47 +31,6 @@
               <p>Proveedor: {{ producto.proveedor }}</p>
             </ion-label>
 
-<<<<<<< HEAD
-        <ion-content>
-          <form [formGroup]="editForm" (ngSubmit)="submitEdit()">
-            <ion-item>
-              <ion-label position="floating">Nombre</ion-label>
-              <ion-input formControlName="Nombre"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Precio</ion-label>
-              <ion-input type="number" formControlName="Precio"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Stock</ion-label>
-              <ion-input type="number" formControlName="Stock"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Categoría</ion-label>
-              <ion-select formControlName="Categoria">
-                <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.id">
-                  {{ categoria.Nombre }}
-                </ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label>Proveedor</ion-label>
-              <ion-select formControlName="proveedor">
-                <ion-select-option *ngFor="let proveedor of proveedores" [value]="proveedor.id">
-                  {{ proveedor.Nombre }}
-                </ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-footer>
-              <ion-toolbar>
-                <ion-button expand="full" type="submit">Guardar Cambios</ion-button>
-              </ion-toolbar>
-            </ion-footer>
-          </form>
-        </ion-content>
-      </ng-template>
-    </ion-modal>
-=======
             <!-- Mostrar los botones de editar y eliminar solo si el id está presente -->
             <ion-buttons slot="end" *ngIf="producto.id">
               <ion-button color="warning" (click)="editProducto(producto)">
@@ -85,6 +44,5 @@
         </ion-list>
       </ion-col>
     </ion-row>
->>>>>>> parent of ad224c2 (Mejora de page inventario)
   </ion-grid>
 </ion-content>
