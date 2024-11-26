@@ -1,0 +1,51 @@
+/* Centrar contenido vertical y horizontalmente en ion-content */
+.center-content {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    height: 100vh;           /* Asegura que ocupe todo el alto de la pantalla */
+    margin: 0;               /* Elimina márgenes por defecto */
+  }
+  
+  /* Estilo de la tarjeta */
+  .provider-card {
+    width: 100%;             /* Ocupa el 100% del espacio disponible */
+    max-width: 500px;        /* Máximo ancho de la tarjeta */
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    overflow: hidden;
+    box-sizing: border-box; /* Incluye padding y border en el tamaño total */
+    margin: auto;           /* Asegura que la tarjeta esté centrada */
+  }
+  
+  /* Campos de entrada con un poco de margen entre ellos */
+  ion-item {
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo para los botones */
+  ion-button {
+    background-color: #4CAF50;   /* Color de fondo de los botones */
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);  /* Sombra suave en los botones */
+  }
+  
+  /* Separar los botones */
+  ion-button[expand="full"] {
+    margin-top: 20px;
+  }
+  
+  /* Listado de proveedores */
+  ion-list {
+    margin-top: 20px;
+  }
+  
+  /* Estilo del botón de eliminar */
+  ion-button[color="danger"] {
+    background-color: #f44336;
+  }
+  

@@ -1,29 +1,64 @@
 <ion-header>
   <ion-toolbar>
-    <!-- Agregar el botón para abrir el menú -->
-    <ion-menu-button></ion-menu-button>
+    <!-- Botón de menú con ícono -->
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false">
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <!-- Título estilizado -->
     <ion-title>
-      Pokémon del Día
+      Inicio App Inventario
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card *ngIf="pokemonDelDia">
-    <img [src]="pokemonDelDia.sprites.front_default" alt="Imagen de Pokémon">
-    <ion-card-header>
-      <ion-card-title>{{ pokemonDelDia.name | titlecase }}</ion-card-title>
-    </ion-card-header>
+  <!-- Título principal de la sección -->
+  <div class="section-title">
+    <h1>Pokémon del Día</h1>
+  </div>
+
+  <!-- Card futurista para mostrar el Pokémon -->
+  <ion-card *ngIf="pokemonDelDia" class="pokemon-card futuristic-card">
+    <div class="pokemon-card-header">
+      <ion-img [src]="pokemonDelDia.sprites.front_default" alt="Imagen de Pokémon" class="pokemon-image"></ion-img>
+      <div class="pokemon-info">
+        <h2 class="pokemon-name">{{ pokemonDelDia.name | titlecase }}</h2>
+        <p class="pokemon-type-label">Tipo: 
+          <span class="pokemon-type">{{ pokemonDelDia.types[0].type.name | titlecase }}</span>
+        </p>
+      </div>
+    </div>
     <ion-card-content>
-      <p>Este es el Pokémon del día. ¡Disfrútalo!</p>
-      <p><strong>Tipo:</strong> {{ pokemonDelDia.types[0].type.name | titlecase }}</p>
+      <div class="pokemon-details">
+        <!-- Habilidades -->
+        <div class="detail-item">
+          <ion-icon name="flash-outline" color="primary"></ion-icon>
+          <span>{{ habilidades.join(', ') | titlecase }}</span>
+        </div>
+        <!-- Fortalezas -->
+        <div class="detail-item">
+          <ion-icon name="shield-checkmark-outline" color="success"></ion-icon>
+          <span>{{ fortalezas.join(', ') | titlecase }}</span>
+        </div>
+        <!-- Evoluciones -->
+        <div class="detail-item">
+          <ion-icon name="analytics-outline" color="warning"></ion-icon>
+          <span>{{ evoluciones.join(', ') | titlecase }}</span>
+        </div>
+      </div>
     </ion-card-content>
   </ion-card>
 
-  <!-- Mostrar mensaje si no se ha cargado aún -->
-  <ion-card *ngIf="!pokemonDelDia">
+  <!-- Mensaje de carga -->
+  <ion-card *ngIf="!pokemonDelDia" class="loading-card futuristic-card">
     <ion-card-header>
       <ion-card-title>Cargando Pokémon...</ion-card-title>
     </ion-card-header>
+    <ion-card-content>
+      <p>Por favor, espera mientras encontramos al Pokémon del día.</p>
+      <ion-spinner name="crescent" color="primary"></ion-spinner>
+    </ion-card-content>
   </ion-card>
 </ion-content>
