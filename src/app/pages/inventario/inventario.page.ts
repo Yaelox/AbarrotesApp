@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService, Producto } from '../../services/product.service';
 import { CategoriaService } from '../../services/categoria.service'; // Servicio para categorías
 import { ProveedoresService } from '../../services/proveedores.service'; // Servicio para proveedores
 import { ToastController, AlertController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
+=======
+>>>>>>> parent of ad224c2 (Mejora de page inventario)
 =======
 >>>>>>> parent of ad224c2 (Mejora de page inventario)
 import { ProductService } from '../../services/product.service';
@@ -16,7 +19,21 @@ import { CategoriaService } from '../../services/categoria.service';  // Verific
  // Asegúrate de importar el servicio de categorías
 import { ProveedoresService } from '../../services/proveedores.service'; // Asegúrate de importar el servicio de proveedores
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+
+export interface Producto {
+  id?: string;
+  Nombre: string;
+  Precio: number;
+  Stock: number;
+  Categoria: string;
+  Descripcion: string;
+  Fechadeagregado: any;
+  proveedor: string;
+}
+>>>>>>> parent of ad224c2 (Mejora de page inventario)
 
 export interface Producto {
   id?: string;
@@ -47,6 +64,7 @@ export interface Producto {
 })
 export class InventarioPage implements OnInit {
   productos: Producto[] = [];
+<<<<<<< HEAD
 <<<<<<< HEAD
   categorias: any[] = []; // Almacenará las categorías disponibles
   proveedores: any[] = []; // Almacenará los proveedores disponibles
@@ -109,6 +127,38 @@ export class InventarioPage implements OnInit {
   }
 
 >>>>>>> parent of ad224c2 (Mejora de page inventario)
+=======
+  categorias: string[] = [];
+  proveedores: string[] = [];
+
+  constructor(
+    private productService: ProductService,
+    private navCtrl: NavController,
+    private router: Router,
+    private firestore: AngularFirestore,
+    private alertController: AlertController,
+    private toastController: ToastController,
+    private categoriaService: CategoriaService,  // Instanciamos el servicio de categorías
+    private proveedoresService: ProveedoresService   // Instanciamos el servicio de proveedores
+  ) {}
+
+  ngOnInit() {
+    // Obtener productos
+    this.productService.getProducts().subscribe((data) => {
+      this.productos = data;
+    });
+
+    // Obtener categorías y proveedores
+    this.categoriaService.getCategorias().subscribe((data) => {
+      this.categorias = data;
+    });
+
+    this.proveedoresService.getProveedores().subscribe((data) => {
+      this.proveedores = data;
+    });
+  }
+
+>>>>>>> parent of ad224c2 (Mejora de page inventario)
   loadProductos() {
     this.productService.getProducts().subscribe((data) => {
       this.productos = data; // Recarga los productos en la lista
@@ -118,6 +168,7 @@ export class InventarioPage implements OnInit {
   goToHome() {
     this.navCtrl.navigateRoot('/home');
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -183,6 +234,10 @@ export class InventarioPage implements OnInit {
       });
   }
 
+=======
+
+  async editProducto(producto: Producto) {
+>>>>>>> parent of ad224c2 (Mejora de page inventario)
 =======
 
   async editProducto(producto: Producto) {
