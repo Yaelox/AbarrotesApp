@@ -38,16 +38,6 @@
           </ion-list>
         </div>
 
-        <!-- Evoluciones -->
-        <div *ngIf="evoluciones.length > 0">
-          <h3>Evoluciones</h3>
-          <ion-list>
-            <ion-item *ngFor="let evolucion of evoluciones">
-              <ion-label>{{ evolucion.name | titlecase }}</ion-label>
-            </ion-item>
-          </ion-list>
-        </div>
-
         <!-- Botón de detalles -->
         <ion-button expand="full" (click)="verDetalles()">Ver detalles</ion-button>
       </ion-card-content>
