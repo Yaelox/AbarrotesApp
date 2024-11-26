@@ -4,56 +4,54 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding center-content">
+  <!-- Card centrada -->
+  <div class="card">
+    <!-- Título del formulario -->
+    <h2 class="form-title">Agregar Producto</h2>
 
-  <ion-button expand="block" color="primary" (click)="goToHome()" class="btn-home">
-    <ion-icon name="home-outline" slot="start"></ion-icon>
-    Ir a Inicio
-  </ion-button>
+    <!-- Campos del formulario -->
+    <ion-item lines="full">
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input [(ngModel)]="newProduct.Nombre" required placeholder="Introduce el nombre del producto"></ion-input>
+    </ion-item>
 
-  <!-- Tarjeta de agregar producto -->
-  <ion-card class="product-card">
-    <ion-card-header class="ion-text-center">
-      <ion-card-title>Agregar Producto</ion-card-title>
-    </ion-card-header>
+    <ion-item lines="full">
+      <ion-label position="stacked">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="newProduct.Descripcion" required placeholder="Introduce una descripción del producto"></ion-textarea>
+    </ion-item>
 
-    <ion-card-content>
-      <ion-item lines="full">
-        <ion-label position="stacked">Nombre</ion-label>
-        <ion-input [(ngModel)]="newProduct.Nombre" required></ion-input>
-      </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Categoría</ion-label>
+      <ion-select [(ngModel)]="newProduct.Categoria" interface="popover" placeholder="Selecciona una categoría" required>
+        <ion-select-option *ngFor="let categoria of categorias | async" [value]="categoria.Nombre">{{ categoria.Nombre }}</ion-select-option>
+      </ion-select>
+    </ion-item>
 
-      <ion-item lines="full">
-        <ion-label position="stacked">Descripción</ion-label>
-        <ion-textarea [(ngModel)]="newProduct.Descripcion" required></ion-textarea>
-      </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Precio</ion-label>
+      <ion-input type="number" [(ngModel)]="newProduct.Precio" required placeholder="Introduce el precio del producto"></ion-input>
+    </ion-item>
 
-      <ion-item lines="full">
-        <ion-label position="stacked">Categoría</ion-label>
-        <ion-select [(ngModel)]="newProduct.Categoria" interface="popover" placeholder="Selecciona Categoría" required>
-          <ion-select-option *ngFor="let categoria of categorias | async" [value]="categoria.Nombre">{{ categoria.Nombre }}</ion-select-option>
-        </ion-select>
-      </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Stock</ion-label>
+      <ion-input type="number" [(ngModel)]="newProduct.Stock" required placeholder="Introduce el stock disponible"></ion-input>
+    </ion-item>
 
-      <ion-item lines="full">
-        <ion-label position="stacked">Precio</ion-label>
-        <ion-input type="number" [(ngModel)]="newProduct.Precio" required></ion-input>
-      </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Proveedor</ion-label>
+      <ion-input [(ngModel)]="newProduct.proveedor" required placeholder="Introduce el nombre del proveedor"></ion-input>
+    </ion-item>
 
-      <ion-item lines="full">
-        <ion-label position="stacked">Stock</ion-label>
-        <ion-input type="number" [(ngModel)]="newProduct.Stock" required></ion-input>
-      </ion-item>
+    <!-- Botones -->
+    <ion-button expand="block" (click)="addProduct()" color="secondary" class="btn-add-product">
+      <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+      Agregar Producto
+    </ion-button>
 
-      <ion-item lines="full">
-        <ion-label position="stacked">Proveedor</ion-label>
-        <ion-input [(ngModel)]="newProduct.proveedor" required></ion-input>
-      </ion-item>
-
-      <ion-button expand="block" (click)="addProduct()" color="secondary" class="btn-add-product">
-        <ion-icon name="add-circle-outline" slot="start"></ion-icon>
-        Agregar Producto
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
+    <ion-button expand="block" color="primary" (click)="goToHome()" class="btn-home">
+      <ion-icon name="home-outline" slot="start"></ion-icon>
+      Ir a Inicio
+    </ion-button>
+  </div>
 </ion-content>
