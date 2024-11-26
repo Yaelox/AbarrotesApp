@@ -1,51 +1,37 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Inventario</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToHome()">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-grid>
+    <!-- Botón para regresar al inicio -->
     <ion-row>
-      <ion-col size="12">
-        <ion-list>
-          <ion-card *ngFor="let producto of productos">
-            <ion-card-header>
-              <ion-card-title>{{ producto.Nombre }}</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-              <p><strong>Precio:</strong> ${{ producto.Precio }}</p>
-              <p><strong>Stock:</strong> {{ producto.Stock }}</p>
-              <p><strong>Categoría:</strong> {{ producto.Categoria }}</p>
-              <p><strong>Proveedor:</strong> {{ producto.proveedor }}</p>
-              <div class="action-buttons">
-                <ion-button color="warning" (click)="openEditModal(producto)">
-                  <ion-icon name="create-outline" slot="start"></ion-icon>
-                  Editar
-                </ion-button>
-                <ion-button color="danger" (click)="deleteProducto(producto.id)">
-                  <ion-icon name="trash-outline" slot="start"></ion-icon>
-                  Eliminar
-                </ion-button>
-              </div>
-            </ion-card-content>
-          </ion-card>
-        </ion-list>
+      <ion-col size="12" class="ion-text-center">
+        <ion-button expand="full" color="primary" (click)="goToHome()">Ir al inicio</ion-button>
       </ion-col>
     </ion-row>
 
-    <!-- Modal para editar producto -->
-    <ion-modal [isOpen]="isEditModalOpen" (ionModalDidDismiss)="closeEditModal()">
-      <ng-template>
-        <ion-header>
-          <ion-toolbar>
-            <ion-title>Editar Producto</ion-title>
-            <ion-buttons slot="end">
-              <ion-button (click)="closeEditModal()">Cerrar</ion-button>
-            </ion-buttons>
-          </ion-toolbar>
-        </ion-header>
+    <!-- Lista de productos -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-item *ngFor="let producto of productos">
+            <ion-label>
+              <h2>{{ producto.Nombre }}</h2>
+              <p>Precio: ${{ producto.Precio }}</p>
+              <p>Stock: {{ producto.Stock }}</p>
+              <p>Categoría: {{ producto.Categoria }}</p>
+              <p>Proveedor: {{ producto.proveedor }}</p>
+            </ion-label>
 
+<<<<<<< HEAD
         <ion-content>
           <form [formGroup]="editForm" (ngSubmit)="submitEdit()">
             <ion-item>
@@ -85,13 +71,20 @@
         </ion-content>
       </ng-template>
     </ion-modal>
+=======
+            <!-- Mostrar los botones de editar y eliminar solo si el id está presente -->
+            <ion-buttons slot="end" *ngIf="producto.id">
+              <ion-button color="warning" (click)="editProducto(producto)">
+                <ion-icon name="create"></ion-icon>
+              </ion-button>
+              <ion-button color="danger" (click)="deleteProducto(producto.id)">
+                <ion-icon name="trash"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-item>          
+        </ion-list>
+      </ion-col>
+    </ion-row>
+>>>>>>> parent of ad224c2 (Mejora de page inventario)
   </ion-grid>
 </ion-content>
-
-<!-- Botón de "Inicio" fuera del header, ocupa todo el ancho -->
-<div class="full-width-button">
-  <ion-button expand="full" color="secondary" (click)="goToHome()">
-    <ion-icon name="home" slot="start"></ion-icon>
-    Regresar al Inicio
-  </ion-button>
-</div>

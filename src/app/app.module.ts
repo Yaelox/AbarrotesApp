@@ -8,7 +8,6 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { FormsModule } from '@angular/forms';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -31,7 +30,6 @@ initializeApp(environment.firebaseConfig);
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    ReactiveFormsModule,
     AngularFireDatabaseModule,
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {

@@ -3,42 +3,49 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 
 export interface Producto {
-  id: string;
-  Categoria: string;
-  Descripcion: string;
-  Fechadeagregado: any;
+  id?: string; // Se incluye porque Firestore genera IDs únicos
   Nombre: string;
   Precio: number;
   Stock: number;
-  proveedor: string;
+  Categoria: string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private collectionName = 'Productos';
+  private collectionName = 'Productos';  // Nombre de la colección en Firestore
 
   constructor(private firestore: AngularFirestore) {}
 
-  // Obtener productos
-  getProducts(): Observable<Producto[]> {
-    return this.firestore.collection<Producto>(this.collectionName).valueChanges({ idField: 'id' });
+  // Método para obtener los productos
+  getProducts(): Observable<any[]> {
+    return this.firestore.collection(this.collectionName).valueChanges();
   }
 
-  // Agregar producto
-  addProduct(producto: Producto): Promise<void> {
-    const id = this.firestore.createId();
-    return this.firestore.collection(this.collectionName).doc(id).set(producto);
+  // Método para actualizar un producto
+  updateProducto(id: string, updatedProducto: Producto): Promise<void> {
+    return this.firestore
+      .collection(this.collectionName)
+      .doc(id)
+      .update(updatedProducto)
+      .then(() => console.log('Producto actualizado correctamente'))
+      .catch((error) => {
+        console.error('Error al actualizar el producto: ', error);
+        throw error;
+      });
   }
 
-  // Actualizar producto
-  updateProduct(id: string, producto: Producto): Promise<void> {
-    return this.firestore.collection(this.collectionName).doc(id).update(producto);
-  }
-
-  // Eliminar producto
-  deleteProduct(id: string): Promise<void> {
-    return this.firestore.collection(this.collectionName).doc(id).delete();
+  // Método para eliminar un producto
+  deleteProducto(id: string): Promise<void> {
+    return this.firestore
+      .collection(this.collectionName)
+      .doc(id)
+      .delete()
+      .then(() => console.log('Producto eliminado correctamente'))
+      .catch((error) => {
+        console.error('Error al eliminar el producto: ', error);
+        throw error;
+      });
   }
 }

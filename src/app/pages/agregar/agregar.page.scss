@@ -1,101 +1,16 @@
-// Variables de colores y estilos
-$primary-color: #0077cc;
-$secondary-color: #00a878;
-$text-color: #333333;
-$background-color: #f0f4f8;
-$card-background: #ffffff;
-$border-radius: 12px;
-$box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-$transition-time: 0.3s;
-
-// Fuente personalizada
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap');
-
-.center-content {
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center;    /* Centra verticalmente */
-  min-height: 100vh;      /* Altura completa de la pantalla */
-  background-color: #f0f4f8; /* Fondo para la pantalla */
-  padding: 20px;          /* Espaciado alrededor del contenido */
-  height: 100%; 
-}
-// Card centralizada
-.card {
-  width: 90%;             /* Ancho del formulario ajustado */
-  max-width: 400px;       /* Máximo ancho del formulario */
-  padding: 20px;
-  background: #fff;       /* Fondo blanco */
-  border-radius: 10px;    /* Esquinas redondeadas */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-}
-ion-content {
-  --background: #f5f5f5; /* Fondo claro opcional */
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center;    /* Centra verticalmente */
-  height: 100vh;          /* Asegura que ocupe toda la ventana */
-}
-  .form-title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: $primary-color;
-    margin-bottom: 20px;
+ion-card {
+    margin: 20px;
   }
-
+  
+  .register-card {
+    padding: 20px;
+  }
+  
   ion-item {
-    margin: 10px 0;
-    border-radius: $border-radius;
-    box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow $transition-time;
-
-    ion-label {
-      color: $text-color;
-      font-size: 1rem;
-      font-weight: 500;
-    }
-
-    ion-input,
-    ion-textarea,
-    ion-select {
-      font-size: 1rem;
-      color: $text-color;
-    }
-
-    &:hover {
-      box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.2);
-    }
+    margin-bottom: 10px;
   }
-
+  
   ion-button {
-    width: 100%;
-    margin-top: 15px;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: $border-radius;
-    text-transform: uppercase;
-
-    ion-icon {
-      font-size: 1.2rem;
-      margin-right: 5px;
-    }
-
-    &.btn-add-product {
-      background: $secondary-color;
-      color: white;
-
-      &:hover {
-        background: darken($secondary-color, 10%);
-      }
-    }
-
-    &.btn-home {
-      background: $primary-color;
-      color: white;
-
-      &:hover {
-        background: darken($primary-color, 10%);
-      }
-    }
+    margin-top: 10px;
   }
-
+  
