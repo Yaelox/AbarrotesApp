@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { environment } from '../environments/environment';
 import { getMessaging, getToken, onMessage } from 'firebase/messaging';
-import { PushNotifications, PermissionStatus } from '@capacitor/push-notifications';
+
 
 @Component({
   selector: 'app-root',
@@ -16,27 +16,11 @@ export class AppComponent implements OnInit {
   constructor(private navCtrl: NavController) {}
 
   ngOnInit(): void {
-    this.initializePushNotifications();
     this.requestFirebasePermission();
     this.listenToFirebaseMessages();
   }
 
-  /**
-   * Inicializa las notificaciones push usando Capacitor
-   */
-  async initializePushNotifications() {
-    const permissionStatus: PermissionStatus = await PushNotifications.checkPermissions();
-
-    if (permissionStatus.receive !== 'granted') {
-      const result = await PushNotifications.requestPermissions();
-      if (result.receive !== 'granted') {
-        console.log('Permisos para notificaciones no concedidos');
-        return;
-      }
-    }
-
-    console.log('Notificaciones push habilitadas mediante Capacitor');
-  }
+  
 
   /**
    * Solicita permiso para notificaciones con Firebase y obtiene el token

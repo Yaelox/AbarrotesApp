@@ -1,52 +1,46 @@
 <ion-header>
   <ion-toolbar>
+    <!-- Botón de menú con ícono -->
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false">
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <!-- Título estilizado -->
     <ion-title>
-      Pokémon del Día
+      Inicio App Inventario
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <!-- Sección de Pokémon del Día -->
-  <div *ngIf="pokemonDelDia">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>{{ pokemonDelDia.name | titlecase }}</ion-card-title>
-      </ion-card-header>
-
-      <ion-card-content>
-        <!-- Imagen del Pokémon -->
-        <img [src]="pokemonDelDia.sprites?.front_default" alt="{{ pokemonDelDia.name }}">
-
-        <!-- Habilidades -->
-        <div *ngIf="habilidades.length > 0">
-          <h3>Habilidades</h3>
-          <ion-list>
-            <ion-item *ngFor="let habilidad of habilidades">
-              <ion-label>{{ habilidad | titlecase }}</ion-label>
-            </ion-item>
-          </ion-list>
-        </div>
-
-        <!-- Fortalezas -->
-        <div *ngIf="fortalezas.length > 0">
-          <h3>Fortalezas</h3>
-          <ion-list>
-            <ion-item *ngFor="let fortaleza of fortalezas">
-              <ion-label>{{ fortaleza | titlecase }}</ion-label>
-            </ion-item>
-          </ion-list>
-        </div>
-
-        <!-- Botón de detalles -->
-        <ion-button expand="full" (click)="verDetalles()">Ver detalles</ion-button>
-      </ion-card-content>
-    </ion-card>
+<ion-content>
+  <!-- Título principal de la sección -->
+  <div class="section-title">
+    <h1>Pokémon del Día</h1>
   </div>
 
-  <!-- Mensaje en caso de que no se haya cargado el Pokémon -->
-  <div *ngIf="!pokemonDelDia">
-    <ion-spinner name="crescent"></ion-spinner>
-    <p>Cargando el Pokémon del día...</p>
-  </div>
+  <!-- Card para mostrar el Pokémon -->
+  <ion-card *ngIf="pokemonDelDia" class="pokemon-card">
+    <ion-img [src]="pokemonDelDia.sprites.front_default" alt="Imagen de Pokémon"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{ pokemonDelDia.name | titlecase }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Este es el Pokémon destacado del día. ¡Descúbrelo y conoce más sobre él!</p>
+      <p><strong>Tipo:</strong> 
+        <span class="pokemon-type">{{ pokemonDelDia.types[0].type.name | titlecase }}</span>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Mensaje de carga -->
+  <ion-card *ngIf="!pokemonDelDia" class="loading-card">
+    <ion-card-header>
+      <ion-card-title>Cargando Pokémon...</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Por favor, espera mientras encontramos al Pokémon del día.</p>
+      <ion-spinner name="crescent" color="primary"></ion-spinner>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
