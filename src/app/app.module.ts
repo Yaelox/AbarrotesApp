@@ -1,4 +1,4 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { NgModule, isDevMode, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -6,7 +6,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { FormsModule } from '@angular/forms';
-import { AngularFireDatabaseModule } from '@angular/fire/compat/database'; // Asegúrate de que esto esté aquí
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -18,6 +18,7 @@ import { initializeApp } from 'firebase/app';
 import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 import { CategoriaService } from './services/categoria.service';
 import { ProveedoresService } from './services/proveedores.service';
+
 initializeApp(environment.firebaseConfig);
 
 @NgModule({
@@ -40,5 +41,6 @@ initializeApp(environment.firebaseConfig);
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],  // Añade esta línea para permitir elementos web personalizados
 })
 export class AppModule {}
