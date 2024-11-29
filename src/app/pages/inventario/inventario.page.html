@@ -1,11 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Inventario</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="goToHome()">
-        Ir a Home
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -33,10 +28,7 @@
             <p><strong>Stock:</strong> {{ producto.Stock }}</p>
             <p><strong>Categoría:</strong> {{ producto.Categoria }}</p>
             <div class="action-buttons">
-              <ion-button fill="solid" color="primary" (click)="editProducto(producto)">
-                <ion-icon slot="start" name="create-outline"></ion-icon>
-                Editar
-              </ion-button>
+              <ion-button (click)="editarProducto(producto.id)">Editar</ion-button>
               <ion-button fill="solid" color="danger" (click)="producto.id ? deleteProducto(producto.id) : null">
                 <ion-icon slot="start" name="trash-outline"></ion-icon>
                 Eliminar

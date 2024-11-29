@@ -5,12 +5,12 @@ import { map } from 'rxjs/operators';
 
 // Interfaz para representar un producto
 export interface Producto {
-  id?: string; // ID único generado por Firestore (opcional para creación)
+  id: string; // ID único generado por Firestore (opcional para creación)
   Nombre: string;
   Precio: number;
   Stock: number;
   Categoria: string;
-  Descripcion: string;
+  Descripcion: string;  
   proveedor: string;
   Fechadeagregado?: any; // Fecha opcional al agregar
   Fechadeactualizacion?: any; // Fecha opcional al actualizar
@@ -31,14 +31,15 @@ export class ProductService {
       .pipe(
         map((actions) =>
           actions.map((a) => {
-            const data = a.payload.doc.data() as Producto;
-            const id = a.payload.doc.id;
-            console.log('Producto obtenido:', { id, ...data }); // Log de los datos
-            return { id, ...data };
+            const data = a.payload.doc.data() as Producto; // Los datos del producto
+            const id = a.payload.doc.id; // El id del documento
+            console.log('Producto obtenido:', { ...data, id }); // Log de los datos
+            return { ...data, id }; // Agregar id de manera segura sin sobrescribir
           })
         )
       );
   }
+  
   getProductById(id: string): Observable<Producto | undefined> {
     return this.firestore
       .collection<Producto>(this.collectionName)
@@ -48,7 +49,8 @@ export class ProductService {
         map((doc) => {
           const data = doc.payload.data() as Producto; // Los datos del producto
           if (data) {
-            return { id, ...data }; // Asignamos el id al objeto
+            // Asegurarnos de no sobrescribir la propiedad 'id' si ya existe
+            return { ...data, id }; // Asignamos el id al objeto sin sobrescribir
           }
           return undefined;
         })
@@ -83,11 +85,7 @@ export class ProductService {
         throw new Error('Hubo un problema al guardar el producto. Por favor, inténtalo nuevamente.');
       });
   }
-  /**
-   * Actualiza un producto existente en la colección.
-   * @param id ID del producto a actualizar
-   * @param updatedProducto Datos actualizados del producto
-   */
+
   updateProducto(id: string, updatedProducto: Partial<Producto>): Promise<void> {
     return this.firestore
       .collection(this.collectionName)

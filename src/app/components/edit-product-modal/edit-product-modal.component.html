@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Editar Producto</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="producto">
+  <form (ngSubmit)="saveChanges()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="producto.Nombre" name="nombre" placeholder="Nombre del producto" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Precio</ion-label>
+        <ion-input type="number" [(ngModel)]="producto.Precio" name="precio" placeholder="Precio del producto" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Stock</ion-label>
+        <ion-input type="number" [(ngModel)]="producto.Stock" name="stock" placeholder="Stock disponible" required></ion-input>
+      </ion-item>
+
+ <!-- Campo de categoría -->
+ <ion-item lines="full">
+  <ion-label position="stacked">Categoría</ion-label>
+  <ion-select [(ngModel)]="producto.Categoria" interface="popover" placeholder="Selecciona una categoría" required>
+    <ion-select-option *ngFor="let categoria of categorias | async" [value]="categoria.Nombre">{{ categoria.Nombre }}</ion-select-option>
+  </ion-select>
+</ion-item>
+
+<ion-item lines="full">
+  <ion-label position="stacked">Proveedor</ion-label>
+  <ion-select [(ngModel)]="producto.proveedor" interface="popover" placeholder="Selecciona un Proveedor" required>
+    <ion-select-option *ngFor="let proveedor of proveedores | async" [value]="proveedor.id">{{ proveedor.Nombre }}</ion-select-option>
+  </ion-select>
+</ion-item>
+    </ion-list>
+
+    <ion-button expand="full" color="primary" type="submit">Guardar Cambios</ion-button>
+  </form>
+</ion-content>
+
+<!-- Mensaje de error si el producto no está definido -->
+<ion-content *ngIf="!producto">
+  <div class="error-message">
+    <p>No se pudo cargar el producto. Por favor, inténtelo de nuevo.</p>
+  </div>
+</ion-content>
