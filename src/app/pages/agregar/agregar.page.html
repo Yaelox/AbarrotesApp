@@ -41,11 +41,10 @@
     <ion-input type="number" [(ngModel)]="newProduct.Stock" required placeholder="Introduce el stock disponible"></ion-input>
   </ion-item>
 
-  <!-- Campo de proveedor -->
   <ion-item lines="full">
     <ion-label position="stacked">Proveedor</ion-label>
-    <ion-select [(ngModel)]="newProduct.Proveedores" interface="popover" placeholder="Selecciona una categoría" required>
-      <ion-select-option *ngFor="let proveedores of proveedores | async" [value]="proveedores.Nombre">{{ proveedores.Nombre }}</ion-select-option>
+    <ion-select [(ngModel)]="newProduct.proveedor" interface="popover" placeholder="Selecciona un Proveedor" required>
+      <ion-select-option *ngFor="let proveedor of proveedores | async" [value]="proveedor.Nombre">{{ proveedor.Nombre }}</ion-select-option>
     </ion-select>
   </ion-item>
 

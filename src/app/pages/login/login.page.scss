@@ -1,23 +1,49 @@
 .login-page {
-  --background: linear-gradient(135deg, #74ebd5, #acb6e5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  --background: linear-gradient(135deg, #74ebd5, #acb6e5); /* Fondo */
+  display: flex; /* Activa flexbox */
+  align-items: center; /* Centra verticalmente */
+  justify-content: center; /* Centra horizontalmente */
+  height: 100vh; /* Altura completa de la pantalla */
+  margin: 0;
   padding: 0;
-  font-family: roboto;
-  font-size: 20px;
+}
+.outer-container {
+  display: flex; /* Activa flexbox */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  margin: 0; /* Elimina márgenes predeterminados */
+  padding: 0; /* Sin padding adicional */
+  background: #f4f4f4; /* Fondo opcional para resaltar el área */
 }
 
+
 .login-container {
-  max-width: 400px;
-  width: 100%;
-  font-family: roboto;
+  max-width: 400px; /* Define un ancho máximo */
+  width: 100%; /* Adapta el ancho al contenedor */
+  display: grid;
+  flex-direction: column; /* Organiza los hijos en una columna */
+  align-items: center; /* Centra los elementos dentro del contenedor */
+  text-align: center; /* Centra el texto */
 }
 
 .login-card {
+  max-width: 400px; /* Define un ancho máximo */
+  width: 100%; /* Ajusta al tamaño disponible */
+  padding: 20px; /* Añade espacio interno */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border-radius: 15px; /* Bordes redondeados */
+  text-align: center; /* Centra el contenido dentro del card */
+}
+
+ion-card {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
+  max-width: 400px; /* Define un ancho máximo */
+  width: 100%;
+  padding: 20px; /* Añade espacio interno */
+  text-align: center;
+  align-items: center; /* Centra el contenido del texto dentro del ion-card */
 }
 
 .login-button {
@@ -25,7 +51,11 @@
   color: #fff;
   font-weight: bold;
   margin-top: 20px;
+  padding: 10px 15px; /* Añade espacio interno para un diseño más atractivo */
+  border: none;
+  border-radius: 8px; /* Suaviza los bordes */
   transition: background 0.3s ease-in-out;
+  cursor: pointer; /* Muestra un cursor de "mano" al pasar por encima */
 }
 
 .login-button:hover {
@@ -37,6 +67,9 @@
   margin-top: 10px;
   font-size: 0.9em;
   text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .custom-item {
@@ -49,21 +82,23 @@
 ion-title {
   font-size: 1.5em;
   font-weight: bold;
+  text-align: center; /* Centra el título */
 }
 
 ion-card-title {
   text-align: center;
-  font-size: 1.3em;
-  color: #333;
   font-size: 40px;
-  font-family: roboto;
+  color: #333;
+  font-family: Roboto, sans-serif;
 }
 
 ion-card-content {
   padding-top: 10px;
   padding-bottom: 20px;
+  align-items: center;
 }
 
 ion-toolbar {
   --background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  text-align: center; /* Centra el contenido del toolbar */
 }
